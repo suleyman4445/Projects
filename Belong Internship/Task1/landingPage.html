@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Powtoon - Visual Communication Platform</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;
+      color: #003366;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+    }
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    h1, h2, h3 {
+      margin: 0;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 2.4rem;
+      color: #003366;
+      font-weight: 700;
+    }
+    p {
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      color: #204060;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #0078d7;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .logo img {
+      height: 40px;
+    }
+    nav ul {
+      display: flex;
+      gap: 25px;
+      align-items: center;
+    }
+    nav ul li a {
+      color: #ffffff;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      font-size: 0.95rem;
+      padding: 6px 8px;
+      border-radius: 4px;
+    }
+    nav ul li a:hover {
+      color: #d0e7ff;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .login-btn{
+      background: #ffffff;
+      color: #0078d7;
+      padding: 8px 15px;
+      border-radius: 6px;
+      font-weight: 700;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    .login-btn:hover{
+      background-color: #e6f3ff;
+    }
+
+    .signup-btn {
+      background: #ffffff;
+      color: #0078d7;
+      padding: 8px 15px;
+      border-radius: 6px;
+      font-weight: 700;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
+    .signup-btn:hover {
+      background-color: #e6f3ff;
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 80px 10%;
+      background: linear-gradient(120deg, #0078d7, #00aaff);
+      color: #ffffff;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    .hero-text {
+      max-width: 550px;
+    }
+    .hero-text h1 {
+      font-size: 3.4rem;
+      font-weight: 800;
+      margin-bottom: 24px;
+      line-height: 1.15;
+    }
+    .highlight {
+      color: #ffff66;
+    }
+    .hero-text p {
+      font-size: 1.25rem;
+      margin-bottom: 35px;
+      font-weight: 500;
+      max-width: 460px;
+      line-height: 1.4;
+    }
+    .cta-button {
+      background: #ffffff;
+      color: #0078d7;
+      padding: 15px 30px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+      display: inline-block;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .cta-button:hover {
+      background-color: #e0e8ff;
+      transform: translateY(-3px);
+    }
+    .hero-img img {
+      max-width: 480px;
+      width: 100%;
+      animation: float 4s ease-in-out infinite;
+      border-radius: 18px;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+
+    /* Trusted Section */
+    .trusted {
+      background-color: #f0f8ff;
+      padding: 55px 10%;
+      text-align: center;
+      color: #003366;
+      font-weight: 600;
+      font-size: 1.3rem;
+      letter-spacing: 0.04em;
+      margin-top: 20px;
+    }
+
+    /* Solutions Section */
+    .solutions {
+      padding: 60px 10%;
+      background-color: #ffffff;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+      margin-top: 35px;
+    }
+    .card {
+      background: #e6f3ff;
+      padding: 28px 24px;
+      border-radius: 16px;
+      text-align: center;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.18);
+    }
+    .card h3 {
+      margin-bottom: 14px;
+      font-size: 1.3rem;
+      color: #004a99;
+      font-weight: 700;
+    }
+    .card p {
+      font-size: 1rem;
+      color: #003366;
+      font-weight: 500;
+    }
+
+    /* Features Detailed Section */
+    .features-detailed {
+      background-color: #f0f8ff;
+      padding: 70px 10%;
+      text-align: center;
+    }
+    .features-detailed h2 {
+      margin-bottom: 40px;
+    }
+    .features-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .feature-item {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 30px 25px;
+      width: 280px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .feature-item:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.15);
+    }
+    .feature-icon {
+      font-size: 42px;
+      color: #0078d7;
+      margin-bottom: 16px;
+    }
+    .feature-title {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+      color: #004a99;
+    }
+    .feature-desc {
+      font-size: 1rem;
+      color: #003366;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    /* Pricing Section */
+    .pricing {
+      padding: 80px 10%;
+      background-color: #ffffff;
+      text-align: center;
+    }
+    .pricing h2 {
+      margin-bottom: 40px;
+    }
+    .pricing-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .pricing-card {
+      background: #e6f3ff;
+      border-radius: 18px;
+      padding: 36px 28px;
+      max-width: 320px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.10);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease;
+      cursor: default;
+      position: relative;
+    }
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 18px 35px rgba(0,0,0,0.18);
+    }
+    .pricing-title {
+      font-size: 1.6rem;
+      color: #0078d7;
+      margin-bottom: 20px;
+      font-weight: 800;
+    }
+    .pricing-price {
+      font-size: 2.8rem;
+      color: #003366;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+    .pricing-duration {
+      font-size: 1rem;
+      color: #0078d7;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+    .pricing-features {
+      text-align: left;
+      color: #003366;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+    .pricing-features li {
+      margin-bottom: 12px;
+    }
+    .pricing-button {
+      background: #0078d7;
+      color: #ffffff;
+      padding: 13px 0;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: background-color 0.3s ease;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 6px 14px rgba(0, 120, 215, 0.6);
+    }
+    .pricing-button:hover {
+      background-color: #005fa3;
+    }
+    .pricing-card.popular {
+      border: 3px solid #ffd700;
+      box-shadow: 0 12px 30px rgba(255, 215, 0, 0.3);
+      z-index: 10;
+      transform: scale(1.05);
+    }
+    .pricing-popular-label {
+      position: absolute;
+      top: -15px;
+      right: -15px;
+      background: #ffd700;
+      color: #003366;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 6px 14px;
+      border-radius: 12px;
+      box-shadow: 0 3px 7px rgba(0,0,0,0.1);
+    }
+
+    /* How It Works Section */
+    .how-it-works {
+      background-color: #f0f8ff;
+      padding: 70px 10%;
+      text-align: center;
+    }
+    .how-it-works h2 {
+      margin-bottom: 40px;
+    }
+    .steps {
+      display: flex;
+      max-width: 900px;
+      margin: 0 auto;
+      gap: 40px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .step {
+      background: white;
+      border-radius: 14px;
+      padding: 25px 20px 30px;
+      width: 250px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: box-shadow 0.3s ease;
+    }
+    .step:hover {
+      box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+    }
+    .step-number {
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: #0078d7;
+      margin-bottom: 12px;
+    }
+    .step-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      color: #004a99;
+    }
+    .step-desc {
+      color: #003366;
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    /* Clients / Partners Logos */
+    .clients {
+      padding: 50px 10%;
+      background-color: #ffffff;
+      text-align: center;
+    }
+    .clients h2 {
+      margin-bottom: 30px;
+    }
+    .clients-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      align-items: center;
+    }
+    .clients-logos img {
+      filter: grayscale(100%);
+      opacity: 0.6;
+      max-height: 50px;
+      max-width: 140px;
+      transition: all 0.3s ease;
+      object-fit: contain;
+    }
+    .clients-logos img:hover {
+      filter: none;
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    /* Call To Action Section */
+    .call-to-action {
+      background: linear-gradient(120deg, #0078d7, #00aaff);
+      padding: 60px 10%;
+      margin-top: 60px;
+      text-align: center;
+      border-radius: 28px 28px 0 0;
+      color: white;
+    }
+    .call-to-action h2 {
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin-bottom: 20px;
+      text-shadow: 0 3px 9px rgba(0,0,0,0.2);
+    }
+    .call-to-action p {
+      font-size: 1.25rem;
+      max-width: 650px;
+      margin: 0 auto 30px;
+      font-weight: 500;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.15);
+    }
+    .call-to-action a.cta-button {
+      font-size: 1.25rem;
+      padding: 15px 40px;
+    }
+
+    /* Newsletter Section */
+    .newsletter {
+      background-color: #f0f8ff;
+      padding: 60px 10%;
+      text-align: center;
+      border-radius: 0 0 28px 28px;
+      margin-bottom: 40px;
+    }
+    .newsletter h2 {
+      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #003366;
+    }
+    .newsletter p {
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+      color: #204060;
+    }
+    .newsletter-form {
+      display: flex;
+      justify-content: center;
+      max-width: 500px;
+      margin: 0 auto;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .newsletter-input {
+      flex: 1;
+      min-width: 200px;
+      padding: 14px 18px;
+      border-radius: 8px;
+      border: 2px solid #0078d7;
+      font-size: 1rem;
+      outline-offset: 3px;
+      transition: outline-offset 0.3s ease;
+    }
+    .newsletter-input:focus {
+      outline-offset: 0;
+      border-color: #005fa3;
+    }
+    .newsletter-button {
+      background: #0078d7;
+      color: #ffffff;
+      border: none;
+      font-weight: 700;
+      padding: 14px 30px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      box-shadow: 0 5px 10px rgba(0,120,215,0.7);
+      transition: background 0.3s ease;
+    }
+    .newsletter-button:hover {
+      background: #005fa3;
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: #ffffff;
+      padding: 60px 10%;
+      text-align: center;
+    }
+    .testimonials h2 {
+      margin-bottom: 40px;
+    }
+    .testimonials blockquote {
+      font-style: italic;
+      margin: 30px auto 10px;
+      max-width: 700px;
+      font-weight: 500;
+      position: relative;
+      color: #003366;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+    .testimonials blockquote::before {
+      content: "“";
+      font-size: 4rem;
+      position: absolute;
+      left: -40px;
+      top: -20px;
+      color: #0078d7;
+      opacity: 0.2;
+      font-family: serif;
+    }
+    .testimonials footer {
+      margin-top: 20px;
+      color: #0078d7;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+
+    /* FAQ Section */
+    .faq {
+      padding: 70px 10%;
+      background-color: #f0f8ff;
+      max-width: 900px;
+      margin: 0 auto 80px auto;
+    }
+    .faq h2 {
+      text-align: center;
+      margin-bottom: 45px;
+      font-weight: 700;
+      font-size: 2rem;
+      color: #003366;
+    }
+    .faq-item {
+      background: #ffffff;
+      border-radius: 12px;
+      padding: 20px 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.09);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .faq-item:hover {
+      background-color: #e6f3ff;
+    }
+    .faq-item h3 {
+      margin-bottom: 10px;
+      font-weight: 600;
+      color: #004a99;
+      font-size: 1.15rem;
+      user-select: none;
+    }
+    .faq-item p {
+      margin: 0;
+      color: #003366;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: #003366;
+      color: #ffffff;
+      padding: 50px 10%;
+      text-align: center;
+    }
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+    .footer-links div {
+      min-width: 140px;
+    }
+    .footer-links h4 {
+      margin-bottom: 14px;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .footer-links a {
+      display: block;
+      color: #ffffff;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+    .footer-links a:hover {
+      color: #85b4ff;
+    }
+    .footer p {
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-top: 10px;
+      opacity: 0.8;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 850px) {
+      .hero {
+        flex-direction: column;
+        padding: 60px 7%;
+      }
+      .hero-text h1 {
+        font-size: 2.2rem;
+      }
+      .hero-img img {
+        max-width: 320px;
+      }
+      .solutions .grid, .features-list, .pricing-cards, .steps, .clients-logos {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        display: grid;
+        gap: 20px;
+      }
+      .pricing-cards {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav ul {
+        gap: 15px;
+      }
+      nav ul li a {
+        font-size: 0.85rem;
+      }
+      .pricing-cards {
+        gap: 30px;
+      }
+      .feature-item, .step, .pricing-card {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">
+      <img src="powtoon_logo.png" alt="Powtoon Logo" />
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#create">Create</a></li>
+        <li><a href="#why">Why Powtoon</a></li>
+        <li><a href="#solutions">Solutions</a></li>
+        <li><a href="#edu">EDU</a></li>
+        <li><a href="#enterprise">Enterprise</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a class="login-btn" href="login.html">Log In</a></li>
+        <li><a class="signup-btn" href="signup.html">Sign Up</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="create" aria-label="Hero Section">
+    <div class="hero-text">
+      <h1>Make Anything <span class="highlight">Interesting</span></h1>
+      <p>Create amazing videos and presentations that captivate, inspire, and ignite action.</p>
+      <a href="#signup" class="cta-button" aria-label="Start Now">Start Now</a>
+    </div>
+    <div class="hero-img">
+      <img src="hero-illustration.png" alt="Hero Animation" />
+    </div>
+  </section>
+
+  <!-- Trusted Section -->
+  <section class="trusted" aria-label="Trusted by Fortune 500">
+    <h2>Used by 96% of Fortune 500 Companies</h2>
+    <p>Break through the noise with visual communications that deliver results.</p>
+  </section>
+
+  <!-- Solutions Section -->
+  <section class="solutions" id="solutions" aria-label="Solutions for Teams">
+    <h2>Solutions for Every Team</h2>
+    <div class="grid">
+      <div class="card" tabindex="0" aria-label="HR Solutions">
+        <h3>HR</h3>
+        <p>Recruit, onboard, and retain top talent with engaging HR videos.</p>
+      </div>
+      <div class="card" tabindex="0" aria-label="Internal Communications Solutions">
+        <h3>Internal Comms</h3>
+        <p>Inspire genuine employee engagement and enhance productivity.</p>
+      </div>
+      <div class="card" tabindex="0" aria-label="Marketing Solutions">
+        <h3>Marketing</h3>
+        <p>Create lead-generating campaigns and marketing strategies with measurable results.</p>
+      </div>
+      <div class="card" tabindex="0" aria-label="Education Solutions">
+        <h3>Education</h3>
+        <p>Empower teachers and students to tell creative stories and impress the class.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detailed Features Section -->
+  <section class="features-detailed" id="why" aria-label="Why Visual Communications">
+    <h2>Why Visual Communications?</h2>
+    <div class="features-list" role="list">
+      <div class="feature-item" role="listitem" tabindex="0">
+        <div class="feature-icon" aria-hidden="true">🎨</div>
+        <div class="feature-title">Creative Freedom</div>
+        <div class="feature-desc">Access powerful tools to design stunning visuals with ease and flexibility.</div>
+      </div>
+      <div class="feature-item" role="listitem" tabindex="0">
+        <div class="feature-icon" aria-hidden="true">⚡</div>
+        <div class="feature-title">Fast & Easy</div>
+        <div class="feature-desc">Quickly create engaging videos without needing advanced skills or software.</div>
+      </div>
+      <div class="feature-item" role="listitem" tabindex="0">
+        <div class="feature-icon" aria-hidden="true">🤝</div>
+        <div class="feature-title">Collaboration</div>
+        <div class="feature-desc">Work seamlessly with your team to create consistent, impactful messaging.</div>
+      </div>
+      <div class="feature-item" role="listitem" tabindex="0">
+        <div class="feature-icon" aria-hidden="true">📊</div>
+        <div class="feature-title">Performance Tracking</div>
+        <div class="feature-desc">Measure the impact of your content with built-in analytic tools.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="how-it-works" aria-label="How It Works">
+    <h2>How It Works</h2>
+    <div class="steps">
+      <div class="step" tabindex="0" aria-label="Step 1: Choose a Template">
+        <div class="step-number">1</div>
+        <div class="step-title">Choose a Template</div>
+        <div class="step-desc">Start with professionally designed templates tailored to your needs.</div>
+      </div>
+      <div class="step" tabindex="0" aria-label="Step 2: Customize Your Content">
+        <div class="step-number">2</div>
+        <div class="step-title">Customize Your Content</div>
+        <div class="step-desc">Easily add text, images, animations, and audio using our intuitive editor.</div>
+      </div>
+      <div class="step" tabindex="0" aria-label="Step 3: Share and Inspire">
+        <div class="step-number">3</div>
+        <div class="step-title">Share and Inspire</div>
+        <div class="step-desc">Publish your video in formats that suit your audience and platform.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing" id="pricing" aria-label="Pricing Plans">
+    <h2>Choose Your Plan</h2>
+    <div class="pricing-cards" role="list">
+      <article class="pricing-card" role="listitem" tabindex="0" aria-label="Basic Plan">
+        <div class="pricing-title">Basic</div>
+        <div class="pricing-price">$0</div>
+        <div class="pricing-duration">Free Forever</div>
+        <ul class="pricing-features">
+          <li>Access to free templates</li>
+          <li>Up to 5 mins video length</li>
+          <li>Standard video quality</li>
+          <li>Watermarked videos</li>
+        </ul>
+        <button class="pricing-button" aria-label="Select Basic Plan">Get Started</button>
+      </article>
+
+      <article class="pricing-card popular" role="listitem" tabindex="0" aria-label="Pro Plan">
+        <div class="pricing-popular-label">Most Popular</div>
+        <div class="pricing-title">Pro</div>
+        <div class="pricing-price">$19</div>
+        <div class="pricing-duration">Monthly</div>
+        <ul class="pricing-features">
+          <li>All Basic features</li>
+          <li>Unlimited video length</li>
+          <li>Full HD downloads</li>
+          <li>No watermarks</li>
+          <li>Priority support</li>
+        </ul>
+        <button class="pricing-button" aria-label="Select Pro Plan">Get Pro</button>
+      </article>
+
+      <article class="pricing-card" role="listitem" tabindex="0" aria-label="Enterprise Plan">
+        <div class="pricing-title">Enterprise</div>
+        <div class="pricing-price">Custom</div>
+        <div class="pricing-duration">Tailored</div>
+        <ul class="pricing-features">
+          <li>Custom branding</li>
+          <li>Team collaboration tools</li>
+          <li>Dedicated account manager</li>
+          <li>Advanced analytics</li>
+          <li>Bulk licensing</li>
+        </ul>
+        <button class="pricing-button" aria-label="Contact for Enterprise Plan">Contact Us</button>
+      </article>
+    </div>
+  </section>
+
+  <!-- Clients / Partners Logos Section -->
+  <section class="clients" aria-label="Trusted Clients and Partners">
+    <h2>Trusted by Leading Brands</h2>
+    <div class="clients-logos" role="list" aria-live="polite">
+      <img src="client-logo1.png" alt="Client Logo 1" role="listitem" />
+      <img src="client-logo2.png" alt="Client Logo 2" role="listitem" />
+      <img src="client-logo3.png" alt="Client Logo 3" role="listitem" />
+      <img src="client-logo4.png" alt="Client Logo 4" role="listitem" />
+      <img src="client-logo5.png" alt="Client Logo 5" role="listitem" />
+      <img src="client-logo6.png" alt="Client Logo 6" role="listitem" />
+    </div>
+  </section>
+
+  <!-- Call To Action Section -->
+  <section class="call-to-action" aria-label="Join Powtoon Now">
+    <h2>Ready to Make Your Story Stand Out?</h2>
+    <p>Join millions who trust Powtoon to create engaging and captivating videos. Start your free trial today!</p>
+    <a href="#signup" class="cta-button" aria-label="Start Your Free Trial">Get Started Free</a>
+  </section>
+
+  <!-- Newsletter Signup Section -->
+  <section class="newsletter" aria-label="Newsletter Subscription" id="signup">
+    <h2>Stay Updated with Powtoon Insights</h2>
+    <p>Subscribe to our newsletter for tips, tutorials, and special offers delivered straight to your inbox.</p>
+    <form class="newsletter-form" aria-label="Newsletter signup form" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+      <input
+        type="email"
+        class="newsletter-input"
+        placeholder="Enter your email address"
+        aria-label="Email Address"
+        required
+      />
+      <button type="submit" class="newsletter-button" aria-label="Subscribe to newsletter">Subscribe</button>
+    </form>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials" aria-label="Customer Testimonials">
+    <h2>Hear from Our Happy Customers</h2>
+    <blockquote tabindex="0">
+      “Our subscription to Powtoon has paid for itself 100 times over.”
+      <footer>- Ryan Deiss, CEO, Digital Marketer</footer>
+    </blockquote>
+    <blockquote tabindex="0">
+      “Powtoon helped us increase engagement by 40%. The videos are easy to create and look amazing.”
+      <footer>- Sarah Lee, Marketing Manager</footer>
+    </blockquote>
+    <blockquote tabindex="0">
+      “The education features empower teachers to create interactive lessons that students love.”
+      <footer>- Mark Chen, Principal</footer>
+    </blockquote>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq" aria-label="Frequently Asked Questions">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item" tabindex="0" aria-expanded="false">
+      <h3>What is Powtoon?</h3>
+      <p>Powtoon is a visual communication platform that allows users to create animated videos and presentations.</p>
+    </div>
+    <div class="faq-item" tabindex="0" aria-expanded="false">
+      <h3>How can I get started?</h3>
+      <p>Simply sign up for an account and start creating your first video using our templates.</p>
+    </div>
+    <div class="faq-item" tabindex="0" aria-expanded="false">
+      <h3>Is there a free trial available?</h3>
+      <p>Yes, we offer a free trial for new users to explore our features.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer" aria-label="Footer">
+    <div class="footer-links">
+      <div>
+        <h4>Company</h4>
+        <a href="#">About</a>
+        <a href="#">Careers</a>
+        <a href="#">Privacy Policy</a>
+      </div>
+      <div>
+        <h4>Solutions</h4>
+        <a href="#">HR</a>
+        <a href="#">IT</a>
+        <a href="#">Education</a>
+        <a href="#">Marketing</a>
+      </div>
+      <div>
+        <h4>Support</h4>
+        <a href="#">Knowledge Base</a>
+        <a href="#">Tutorials</a>
+        <a href="#">Contact Us</a>
+      </div>
+    </div>
+    <p>© 2011-2025 Powtoon.com, Inc. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
+
