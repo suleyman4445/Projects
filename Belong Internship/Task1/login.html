@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Powtoon Login - Modern & Interactive</title>
+  <style>
+    /* Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #00a3e0, #004a75);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .login-container {
+      background: #fff;
+      color: #004a75;
+      border-radius: 16px;
+      max-width: 420px;
+      width: 100%;
+      padding: 40px 30px;
+      box-shadow: 0 8px 30px rgba(0, 163, 224, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      user-select: text;
+    }
+    .logo img {
+      height: 40px;
+      width: auto;
+      user-select: none;
+      pointer-events: none;
+      display: block;
+    }
+    .logo-text {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #007acc;
+      letter-spacing: 2px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-align: center;
+      color: #004a75;
+      user-select: text;
+    }
+
+    form {
+      width: 100%;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #004a75;
+      user-select: text;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 8px;
+      border: 2px solid #ccc;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: text;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-color: #007acc;
+      box-shadow: 0 0 8px #00a3e0;
+      outline: none;
+    }
+
+    .error-message {
+      color: #d93025;
+      font-size: 0.875rem;
+      margin-top: 6px;
+      position: absolute;
+      bottom: -22px;
+      left: 0;
+      user-select: text;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 14px;
+      background: #007acc;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 30px rgba(0, 122, 204, 0.6);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    button[type="submit"]:hover:not(:disabled),
+    button[type="submit"]:focus:not(:disabled) {
+      background: #005f99;
+      box-shadow: 0 10px 35px rgba(0, 95, 153, 0.9);
+      outline: none;
+    }
+    button[type="submit"]:disabled {
+      background: #99c2e6;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .footer-text {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      text-align: center;
+      color: #004a75;
+      user-select: text;
+    }
+    .footer-text a {
+      color: #007acc;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      user-select: text;
+      transition: color 0.3s ease;
+    }
+    .footer-text a:hover, .footer-text a:focus {
+      color: #005f99;
+      text-decoration: underline;
+      outline: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .login-container {
+        padding: 30px 20px;
+      }
+      .logo-text {
+        font-size: 1.8rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="login-container" aria-labelledby="login-title" role="main">
+    <div class="logo" aria-label="Powtoon company logo and title">
+      <img src="powtoon_logo.png" alt="Powtoon logo" width="40" height="40" />
+      <div class="logo-text">POWTOON</div>
+    </div>
+    <h2 id="login-title">Log in to your account</h2>
+    <form id="loginForm" novalidate>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          placeholder="email@example.com" 
+          autocomplete="email" 
+          required 
+          aria-describedby="emailError" 
+          aria-invalid="false" />
+        <span class="error-message" role="alert" id="emailError" aria-live="assertive"></span>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          placeholder="Enter your password" 
+          autocomplete="current-password" 
+          required  
+          aria-describedby="passwordError"
+          aria-invalid="false" />
+        <span class="error-message" role="alert" id="passwordError" aria-live="assertive"></span>
+      </div>
+      <button type="submit" id="submitBtn" disabled>Log In</button>
+    </form>
+    <div class="footer-text">
+      Don't have an account? <a href="#" tabindex="0" id="signupLink">Sign up</a>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      const form = document.getElementById('loginForm');
+      const submitBtn = document.getElementById('submitBtn');
+
+      const emailInput = form.email;
+      const passwordInput = form.password;
+
+      const emailError = document.getElementById('emailError');
+      const passwordError = document.getElementById('passwordError');
+
+      // Simple email regex for validation
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      // Validate inputs and update errors
+      function validateForm() {
+        let valid = true;
+
+        // Validate email
+        if (!emailInput.value.trim()) {
+          emailError.textContent = 'Email address is required.';
+          emailInput.setAttribute('aria-invalid', 'true');
+          valid = false;
+        } else if (!isValidEmail(emailInput.value.trim())) {
+          emailError.textContent = 'Please enter a valid email address.';
+          emailInput.setAttribute('aria-invalid', 'true');
+          valid = false;
+        } else {
+          emailError.textContent = '';
+          emailInput.setAttribute('aria-invalid', 'false');
+        }
+
+        // Validate password
+        if (!passwordInput.value) {
+          passwordError.textContent = 'Password is required.';
+          passwordInput.setAttribute('aria-invalid', 'true');
+          valid = false;
+        } else {
+          passwordError.textContent = '';
+          passwordInput.setAttribute('aria-invalid', 'false');
+        }
+
+        submitBtn.disabled = !valid;
+        return valid;
+      }
+
+      // Attach input event listeners
+      [emailInput, passwordInput].forEach(input => {
+        input.addEventListener('input', validateForm);
+      });
+
+      // Form submit handler
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        if (validateForm()) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Logging In...';
+          // Simulate async login
+          setTimeout(() => {
+            alert('Login successful! Welcome back to Powtoon.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Log In';
+            form.reset();
+          }, 1500);
+        }
+      });
+
+      // Signup link handler example
+      document.getElementById('signupLink').addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Redirecting to signup page...');
+      });
+
+      // Initial validation run
+      validateForm();
+    })();
+  </script>
+</body>
+</html>
+
