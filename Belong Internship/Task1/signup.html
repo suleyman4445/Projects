@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Powtoon Signup - Modern & Interactive</title>
+  <style>
+    /* Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #00a3e0, #004a75);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: #fff;
+    }
+
+    .signup-container {
+      background: #fff;
+      color: #004a75;
+      border-radius: 16px;
+      max-width: 420px;
+      width: 100%;
+      padding: 40px 30px;
+      box-shadow: 0 8px 30px rgba(0, 163, 224, 0.3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      user-select: text;
+    }
+    .logo img {
+      height: 40px;
+      width: auto;
+      user-select: none;
+      pointer-events: none;
+      display: block;
+    }
+    .logo-text {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #007acc;
+      letter-spacing: 2px;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      text-align: center;
+      color: #004a75;
+      user-select: text;
+    }
+
+    form {
+      width: 100%;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #004a75;
+      user-select: text;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 8px;
+      border: 2px solid #ccc;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: text;
+    }
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border-color: #007acc;
+      box-shadow: 0 0 8px #00a3e0;
+      outline: none;
+    }
+
+    .error-message {
+      color: #d93025;
+      font-size: 0.875rem;
+      margin-top: 6px;
+      position: absolute;
+      bottom: -22px;
+      left: 0;
+      user-select: text;
+    }
+
+    .password-strength {
+      font-size: 0.875rem;
+      margin-top: 4px;
+      font-weight: 600;
+      user-select: text;
+    }
+    .strength-weak {
+      color: #d93025;
+    }
+    .strength-medium {
+      color: #fbbc04;
+    }
+    .strength-strong {
+      color: #34a853;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 14px;
+      background: #007acc;
+      color: white;
+      font-weight: 700;
+      font-size: 1.1rem;
+      border-radius: 12px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 30px rgba(0, 122, 204, 0.6);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      user-select: none;
+    }
+    button[type="submit"]:hover:not(:disabled),
+    button[type="submit"]:focus:not(:disabled) {
+      background: #005f99;
+      box-shadow: 0 10px 35px rgba(0, 95, 153, 0.9);
+      outline: none;
+    }
+    button[type="submit"]:disabled {
+      background: #99c2e6;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .footer-text {
+      margin-top: 20px;
+      font-size: 0.9rem;
+      text-align: center;
+      color: #004a75;
+      user-select: text;
+    }
+    .footer-text a {
+      color: #007acc;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      user-select: text;
+      transition: color 0.3s ease;
+    }
+    .footer-text a:hover, .footer-text a:focus {
+      color: #005f99;
+      text-decoration: underline;
+      outline: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .signup-container {
+        padding: 30px 20px;
+      }
+      .logo-text {
+        font-size: 1.8rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="signup-container" aria-labelledby="signup-title" role="main">
+    <div class="logo" aria-label="Powtoon company logo and title">
+      <img src="powtoon_logo.png" alt="Powtoon logo" width="40" height="40" />
+      <div class="logo-text">POWTOON</div>
+    </div>
+    <h2 id="signup-title">Create your account</h2>
+    <form id="signupForm" novalidate>
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          placeholder="John Doe" 
+          autocomplete="name" 
+          required 
+          aria-describedby="nameError"
+          aria-invalid="false" />
+        <span class="error-message" role="alert" id="nameError" aria-live="assertive"></span>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          placeholder="email@example.com" 
+          autocomplete="email" 
+          required 
+          aria-describedby="emailError" 
+          aria-invalid="false" />
+        <span class="error-message" role="alert" id="emailError" aria-live="assertive"></span>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          placeholder="At least 8 characters" 
+          autocomplete="new-password" 
+          required 
+          minlength="8" 
+          aria-describedby="passwordError passwordStrength"
+          aria-invalid="false" />
+        <span class="error-message" role="alert" id="passwordError" aria-live="assertive"></span>
+        <div class="password-strength" id="passwordStrength" aria-live="polite"></div>
+      </div>
+      <button type="submit" id="submitBtn" disabled>Sign Up</button>
+    </form>
+    <div class="footer-text">
+      Already have an account? <a href="#" tabindex="0" id="loginLink">Log in</a>
+    </div>
+  </section>
+
+  <script>
+    (function(){
+      const form = document.getElementById('signupForm');
+      const submitBtn = document.getElementById('submitBtn');
+
+      const nameInput = form.name;
+      const emailInput = form.email;
+      const passwordInput = form.password;
+
+      const nameError = document.getElementById('nameError');
+      const emailError = document.getElementById('emailError');
+      const passwordError = document.getElementById('passwordError');
+      const passwordStrength = document.getElementById('passwordStrength');
+
+      // Password strength helper
+      function getPasswordStrength(password) {
+        let score = 0;
+        if (password.length >= 8) score++;
+        if (/[A-Z]/.test(password)) score++;
+        if (/[a-z]/.test(password)) score++;
+        if (/[0-9]/.test(password)) score++;
+        if (/[\W_]/.test(password)) score++;
+        if (score <= 2) return {text:'Weak', className:'strength-weak'};
+        if (score <= 4) return {text:'Medium', className:'strength-medium'};
+        return {text:'Strong', className:'strength-strong'};
+      }
+
+      // Simple email regex for validation
+      function isValidEmail(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      }
+
+      // Validate inputs and update errors
+      function validateForm() {
+        let valid = true;
+
+        // Validate name
+        if (!nameInput.value.trim()) {
+          nameError.textContent = 'Full name is required.';
+          nameInput.setAttribute('aria-invalid', 'true');
+          valid = false;
+        } else {
+          nameError.textContent = '';
+          nameInput.setAttribute('aria-invalid', 'false');
+        }
+
+        // Validate email
+        if (!emailInput.value.trim()) {
+          emailError.textContent = 'Email address is required.';
+          emailInput.setAttribute('aria-invalid', 'true');
+          valid = false;
+        } else if (!isValidEmail(emailInput.value.trim())) {
+          emailError.textContent = 'Please enter a valid email address.';
+          emailInput.setAttribute('aria-invalid', 'true');
+          valid = false;
+        } else {
+          emailError.textContent = '';
+          emailInput.setAttribute('aria-invalid', 'false');
+        }
+
+        // Validate password
+        const pwd = passwordInput.value;
+        if (!pwd) {
+          passwordError.textContent = 'Password is required.';
+          passwordInput.setAttribute('aria-invalid', 'true');
+          passwordStrength.textContent = '';
+          passwordStrength.className = 'password-strength';
+          valid = false;
+        } else if (pwd.length < 8) {
+          passwordError.textContent = 'Password must be at least 8 characters.';
+          passwordInput.setAttribute('aria-invalid', 'true');
+          passwordStrength.textContent = '';
+          passwordStrength.className = 'password-strength';
+          valid = false;
+        } else {
+          passwordError.textContent = '';
+          passwordInput.setAttribute('aria-invalid', 'false');
+          // Show strength
+          const strength = getPasswordStrength(pwd);
+          passwordStrength.textContent = `Password strength: ${strength.text}`;
+          passwordStrength.className = `password-strength ${strength.className}`;
+        }
+
+        submitBtn.disabled = !valid;
+        return valid;
+      }
+
+      // Attach input event listeners
+      [nameInput, emailInput, passwordInput].forEach(input => {
+        input.addEventListener('input', validateForm);
+      });
+
+      // Form submit handler
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        if (validateForm()) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'Signing Up...';
+          // Simulate async signup
+          setTimeout(() => {
+            alert('Signup successful! Welcome to Powtoon.');
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Sign Up';
+            form.reset();
+            passwordStrength.textContent = '';
+          }, 1500);
+        }
+      });
+
+      // Login link handler example
+      document.getElementById('loginLink').addEventListener('click', (e) => {
+        e.preventDefault();
+        alert('Redirecting to login page...');
+      });
+    })();
+  </script>
+</body>
+</html>
+
