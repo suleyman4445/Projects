@@ -1,0 +1,41 @@
+Solution Documentation:
+
+CRON Expression Used:
+The expression '0 0 * * *' means the job will run every day at midnight.
+
+Email Service Configuration:
+The email service used is Gmail. The configuration includes the service name 
+and authentication details (email and password).
+
+Error Handling Approach:
+The email sending logic is wrapped in a try-catch block to catch any errors that may 
+occur during the email sending process. If an error occurs, it logs the error message to the console.
+
+
+Implementation Steps:
+
+Step 1: Install Required Packages
+Make sure you have the following packages installed in your Node.js project:
+npm install node-cron nodemailer sequeliz
+
+Step 2: Explanation of the Code
+
+
+          Database Connection: The code connects to a PostgreSQL database using Sequelize. 
+          Make sure to replace 'database_name', 'username', and 'password' with your actual database credentials.
+          
+          Daily Applications Count: The getDailyApplicationsCount function queries the database for t
+          he count of users created in the last 24 hours.
+          
+          CRON Job Setup: The CRON job is scheduled to run every day at midnight ('0 0 * * *'). 
+          It retrieves the count of applications and sends an email report.
+          
+          Nodemailer Configuration: The email is sent using Nodemailer. If using Gmail, you may need to 
+          enable "Less secure app access" or use an App Password.
+          
+          Error Handling: The email sending logic is wrapped in a try-catch block to handle any potential errors gracefully.
+
+
+Step 3: Running the CRON Job
+To run the CRON job, simply execute the following command in your terminal:
+node cronJob.js
